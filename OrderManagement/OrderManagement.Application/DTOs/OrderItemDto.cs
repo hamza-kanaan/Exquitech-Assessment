@@ -1,4 +1,9 @@
 ﻿namespace OrderManagement.Application.DTOs
 {
-    public record OrderItemDto(Guid ProductId, string ProductName, decimal ProductPrice, int Quantity);
+    public class OrderItemDto
+    {
+        public int Quantity { get; set; }
+        public required string ProductName { get; set; }
+        public decimal ProductPrice { get; set; }
+    }
 }

@@ -11,7 +11,7 @@ using OrderManagement.Infrastructure.Persistence;
 namespace OrderManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250806132546_InitialCreate")]
+    [Migration("20250806190425_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -79,6 +79,20 @@ namespace OrderManagement.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Product-1",
+                            Price = 100m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Product-2",
+                            Price = 200m
+                        });
                 });
 
             modelBuilder.Entity("OrderManagement.Domain.Entities.Tenant", b =>
@@ -134,6 +148,16 @@ namespace OrderManagement.Infrastructure.Migrations
                     b.HasIndex("TenantId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "email@email.com",
+                            PasswordHash = "PasswordHash",
+                            TenantId = 1,
+                            Username = "Username-1"
+                        });
                 });
 
             modelBuilder.Entity("OrderManagement.Domain.Entities.Order", b =>

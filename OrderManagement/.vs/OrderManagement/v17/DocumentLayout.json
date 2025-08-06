@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Projects\\Exquitech\\Exquitech-Assessment\\OrderManagement\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{74540D9C-6B3F-4875-9EE3-562D5E81B111}|OrderManagement.Infrastructure\\OrderManagement.Infrastructure.csproj|d:\\projects\\exquitech\\exquitech-assessment\\ordermanagement\\ordermanagement.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74540D9C-6B3F-4875-9EE3-562D5E81B111}|OrderManagement.Infrastructure\\OrderManagement.Infrastructure.csproj|solutionrelative:ordermanagement.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EFDD2CD-EE76-4773-BA1E-E358A0F59ADE}|OrderManagement.Api\\OrderManagement.Api.csproj|d:\\projects\\exquitech\\exquitech-assessment\\ordermanagement\\ordermanagement.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EFDD2CD-EE76-4773-BA1E-E358A0F59ADE}|OrderManagement.Api\\OrderManagement.Api.csproj|solutionrelative:ordermanagement.api\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 40,
           "Children": [
             {
               "$type": "Bookmark",
@@ -170,6 +179,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Exquitech\\Exquitech-Assessment\\OrderManagement\\OrderManagement.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\Projects\\Exquitech\\Exquitech-Assessment\\OrderManagement\\OrderManagement.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "OrderManagement.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAqwA8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T20:22:36.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\Projects\\Exquitech\\Exquitech-Assessment\\OrderManagement\\OrderManagement.Api\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Api\\Controllers\\OrdersController.cs",
+              "ToolTip": "D:\\Projects\\Exquitech\\Exquitech-Assessment\\OrderManagement\\OrderManagement.Api\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "OrderManagement.Api\\Controllers\\OrdersController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAiwBIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T20:13:32.74Z",
+              "EditorCaption": ""
             }
           ]
         }

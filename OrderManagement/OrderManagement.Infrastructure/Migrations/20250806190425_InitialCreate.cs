@@ -109,6 +109,15 @@ namespace OrderManagement.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Product-1", 100m },
+                    { 2, "Product-2", 200m }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Tenants",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -116,6 +125,11 @@ namespace OrderManagement.Infrastructure.Migrations
                     { 1, "Tenant-1" },
                     { 2, "Tenant-2" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "PasswordHash", "TenantId", "Username" },
+                values: new object[] { 1, "email@email.com", "PasswordHash", 1, "Username-1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",

@@ -11,17 +11,20 @@ namespace OrderManagement.Infrastructure.Repositories
 
         public OrderRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
-        public async Task<int> AddAsync(Order order)
+        public async Task AddAsync(Order order)
         {
-            var newOrder = _appDbContext.Orders.Add(order);
+            order.CreatedAt = DateTime.Now;
+            _appDbContext.Orders.Add(order);
             await _appDbContext.SaveChangesAsync();
-            return newOrder.Entity.Id;
         }
 
         public async Task<Order> GetAsync(int id)
         {
-            return await _appDbContext.Orders.Include(o => o.Items)
-                                   .FirstOrDefaultAsync(o => o.Id == id);
+            return await _appDbContext.Orders
+                .Include(o => o.User)
+                .Include(o => o.Items)
+                                    .ThenInclude(i => i.Product)
+                                   .FirstAsync(o => o.Id == id);
         }
     }
 }
