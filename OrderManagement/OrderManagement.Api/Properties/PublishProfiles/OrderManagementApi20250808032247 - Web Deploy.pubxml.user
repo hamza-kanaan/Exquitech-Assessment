@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <History>True|2025-08-08T01:52:25.0823962Z||;True|2025-08-08T04:49:06.3191728+03:00||;True|2025-08-08T04:46:54.4358784+03:00||;True|2025-08-08T04:24:54.4856988+03:00||;True|2025-08-08T03:55:20.7319809+03:00||;True|2025-08-08T03:50:41.2390484+03:00||;False|2025-08-08T03:48:52.0431628+03:00||;True|2025-08-08T03:35:51.6902184+03:00||;True|2025-08-08T03:34:12.7773142+03:00||;True|2025-08-08T03:32:40.3492310+03:00||;True|2025-08-08T03:26:04.8291663+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=OrderManagement.db</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

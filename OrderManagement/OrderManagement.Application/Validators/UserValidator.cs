@@ -3,7 +3,7 @@ using OrderManagement.Application.DTOs;
 
 namespace OrderManagement.Application.Validators
 {
-    public class UserValidator : AbstractValidator<UserDto>
+    public class UserValidator : AbstractValidator<RegisterUserDto>
     {
         public UserValidator()
         {

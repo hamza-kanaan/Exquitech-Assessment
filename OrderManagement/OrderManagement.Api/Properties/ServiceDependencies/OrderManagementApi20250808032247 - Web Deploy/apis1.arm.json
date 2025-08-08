@@ -97,11 +97,11 @@
               "type": "Microsoft.ApiManagement/service/apis",
               "name": "OrderManagementApiapi/OrderManagementApi",
               "properties": {
-                "displayName": "OrderManagementApi",
+                "displayName": "OrderManagement.Api | v1",
                 "apiRevision": "1",
                 "description": null,
                 "subscriptionRequired": true,
-                "serviceUrl": null,
+                "serviceUrl": "https://ordermanagementapi-f4bagghpddcpache.uaenorth-01.azurewebsites.net",
                 "path": "",
                 "protocols": [
                   "https"

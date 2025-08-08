@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrderManagement.Application.Interfaces;
 using OrderManagement.Domain.Interfaces;
 using OrderManagement.Infrastructure.Logging;
+using OrderManagement.Infrastructure.MultiTenants;
 using OrderManagement.Infrastructure.Persistence;
 using OrderManagement.Infrastructure.Repositories;
 
@@ -15,9 +16,9 @@ namespace OrderManagement.Infrastructure
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite(config.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ITenantRepository, TenantRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ITenantProvider, TenantProvider>();
             services.AddSingleton(typeof(ILogService<>), typeof(LogService<>));
             return services;
         }

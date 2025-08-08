@@ -26,11 +26,21 @@ namespace OrderManagement.Application.Services
             return orderDto;
         }
 
-        public async Task<bool> CreateAsync(CreateOrderDto dto)
+        public async Task<bool> CreateAsync(CreateOrderDto createOrderDto)
         {
-            var order = _mapper.Map<Order>(dto);
-            await _orderRepository.AddAsync(order);
-            return true;
+            try
+            {
+                _logger.LogInfo($"OrderService/CreateAsync is starting");
+                var order = _mapper.Map<Order>(createOrderDto);
+                await _orderRepository.AddAsync(order);
+                _logger.LogInfo($"Order by user {createOrderDto.UserId} created successfully.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to create order by user {createOrderDto.UserId}", ex);
+                throw;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ namespace OrderManagement.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<bool> RegisterAsync(UserDto userDto);
+        Task<List<UserDto>> GetAllAsync();
+        Task<bool> RegisterAsync(RegisterUserDto userDto);
     }
 }

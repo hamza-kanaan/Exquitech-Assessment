@@ -24,7 +24,7 @@ namespace OrderManagement.Infrastructure.Repositories
                 .Include(o => o.User)
                 .Include(o => o.Items)
                                     .ThenInclude(i => i.Product)
-                                   .FirstAsync(o => o.Id == id);
+                                   .FirstOrDefaultAsync(o => o.Id == id);
         }
     }
 }

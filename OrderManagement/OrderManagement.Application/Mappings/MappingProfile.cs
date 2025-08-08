@@ -16,6 +16,7 @@ namespace OrderManagement.Application.Mappings
             CreateMap<OrderItem, OrderItemDto>()
             .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
             .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price));
+            CreateMap<User, UserDto>();
         }
     }
 }

@@ -5,7 +5,7 @@ using OrderManagement.Application.Interfaces;
 namespace OrderManagement.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/{tenantId}/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -19,11 +19,13 @@ namespace OrderManagement.Api.Controllers
             return Ok(order);
         }
 
-        [HttpPost("add")]
+        [HttpPost("create")]
         public async Task<IActionResult> Create(CreateOrderDto orderDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             await _orderService.CreateAsync(orderDto);
-            return Ok();
+            return Ok("Order created successfully.");
         }
     }
 }

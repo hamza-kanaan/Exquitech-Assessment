@@ -26,10 +26,15 @@ namespace OrderManagement.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TenantId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("UserId");
 
@@ -42,7 +47,7 @@ namespace OrderManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ProductId")
@@ -73,7 +78,12 @@ namespace OrderManagement.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TenantId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
 
                     b.ToTable("Products");
 
@@ -82,13 +92,15 @@ namespace OrderManagement.Infrastructure.Migrations
                         {
                             Id = 1,
                             Name = "Product-1",
-                            Price = 100m
+                            Price = 100m,
+                            TenantId = 1
                         },
                         new
                         {
                             Id = 2,
                             Name = "Product-2",
-                            Price = 200m
+                            Price = 200m,
+                            TenantId = 1
                         });
                 });
 
@@ -125,6 +137,9 @@ namespace OrderManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -150,6 +165,7 @@ namespace OrderManagement.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "email@email.com",
                             PasswordHash = "PasswordHash",
                             TenantId = 1,
@@ -159,20 +175,30 @@ namespace OrderManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderManagement.Domain.Entities.Order", b =>
                 {
+                    b.HasOne("OrderManagement.Domain.Entities.Tenant", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("OrderManagement.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Tenant");
+
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("OrderManagement.Domain.Entities.OrderItem", b =>
                 {
-                    b.HasOne("OrderManagement.Domain.Entities.Order", null)
+                    b.HasOne("OrderManagement.Domain.Entities.Order", "Order")
                         .WithMany("Items")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OrderManagement.Domain.Entities.Product", "Product")
                         .WithMany()
@@ -180,7 +206,20 @@ namespace OrderManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Order");
+
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("OrderManagement.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("OrderManagement.Domain.Entities.Tenant", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tenant");
                 });
 
             modelBuilder.Entity("OrderManagement.Domain.Entities.User", b =>
