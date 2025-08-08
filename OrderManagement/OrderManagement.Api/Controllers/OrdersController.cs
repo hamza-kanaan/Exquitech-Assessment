@@ -15,8 +15,12 @@ namespace OrderManagement.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var order = await _orderService.GetAsync(id);
-            return Ok(order);
+            var result = await _orderService.GetAsync(id);
+
+            if (!result.Success)
+                return BadRequest(new { result.Message });
+
+            return Ok(new { result.Message, Order = result.Data });
         }
 
         [HttpPost("create")]
@@ -24,8 +28,12 @@ namespace OrderManagement.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            await _orderService.CreateAsync(orderDto);
-            return Ok("Order created successfully.");
+            var result = await _orderService.CreateAsync(orderDto);
+
+            if (!result.Success)
+                return BadRequest(new { result.Message });
+
+            return Ok(new { result.Message, OrderId = result.Data });
         }
     }
 }

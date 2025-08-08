@@ -1,10 +1,11 @@
 ﻿using OrderManagement.Application.DTOs;
+using OrderManagement.Application.Models;
 
 namespace OrderManagement.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<List<UserDto>> GetAllAsync();
-        Task<bool> RegisterAsync(RegisterUserDto userDto);
+        Task<Result<List<UserDto>>> GetAllAsync();
+        Task<Result<UserDto>> RegisterAsync(RegisterUserDto userDto);
     }
 }

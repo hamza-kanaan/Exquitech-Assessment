@@ -11,7 +11,7 @@ using OrderManagement.Infrastructure.Persistence;
 namespace OrderManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250807212106_InitialCreate")]
+    [Migration("20250808205556_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -104,6 +104,13 @@ namespace OrderManagement.Infrastructure.Migrations
                             Name = "Product-2",
                             Price = 200m,
                             TenantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Product-3",
+                            Price = 300m,
+                            TenantId = 2
                         });
                 });
 

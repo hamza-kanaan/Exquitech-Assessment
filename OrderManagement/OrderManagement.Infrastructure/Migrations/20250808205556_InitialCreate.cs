@@ -139,7 +139,8 @@ namespace OrderManagement.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, "Product-1", 100m, 1 },
-                    { 2, "Product-2", 200m, 1 }
+                    { 2, "Product-2", 200m, 1 },
+                    { 3, "Product-3", 300m, 2 }
                 });
 
             migrationBuilder.InsertData(

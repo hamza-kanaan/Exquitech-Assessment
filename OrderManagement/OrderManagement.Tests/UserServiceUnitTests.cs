@@ -43,8 +43,8 @@ public class UserServiceUnitTests
         var result = await _userService.RegisterAsync(registerUserDto);
 
         // Assert
-        Assert.False(result);
-        _loggerMock.Verify(l => l.LogWarning($"User with email {registerUserDto.Email} already exists."), Times.Once);
+        Assert.False(result.Success);
+        _loggerMock.Verify(l => l.LogWarning($"User with email {registerUserDto.Email} already exists"), Times.Once);
         _userRepositoryMock.Verify(x => x.AddAsync(It.IsAny<User>()), Times.Never);
     }
 
@@ -60,8 +60,8 @@ public class UserServiceUnitTests
         var result = await _userService.RegisterAsync(registerUserDto);
 
         // Assert
-        Assert.True(result);
-        _loggerMock.Verify(l => l.LogInfo($"User with email {registerUserDto.Email} registered successfully."), Times.Once);
+        Assert.True(result.Success);
+        _loggerMock.Verify(l => l.LogInfo($"User with email {registerUserDto.Email} registered successfully"), Times.Once);
         _userRepositoryMock.Verify(x => x.AddAsync(It.IsAny<User>()), Times.Once);
     }
 }

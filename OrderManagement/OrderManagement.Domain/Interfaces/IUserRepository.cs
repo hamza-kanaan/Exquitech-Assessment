@@ -6,6 +6,6 @@ namespace OrderManagement.Domain.Interfaces
     {
         Task<User> GetByEmailAsync(string email);
         Task<List<User>> GetAllAsync();
-        Task AddAsync(User user);
+        Task<User> AddAsync(User user);
     }
 }

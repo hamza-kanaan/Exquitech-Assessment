@@ -24,10 +24,12 @@ namespace OrderManagement.Infrastructure.Repositories
             return await _appDbContext.Users.ToListAsync();
         }
 
-        public async Task AddAsync(User user)
+        public async Task<User> AddAsync(User user)
         {
+            user.CreatedAt = DateTime.Now;
             _appDbContext.Users.Add(user);
             await _appDbContext.SaveChangesAsync();
+            return user;
         }
     }
 }

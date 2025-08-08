@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OrderManagement.Application.DTOs;
 using OrderManagement.Application.Interfaces;
+using OrderManagement.Application.Models;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Interfaces;
 
@@ -19,22 +20,46 @@ namespace OrderManagement.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<OrderDto> GetAsync(int id)
+        public async Task<Result<OrderDto>> GetAsync(int id)
         {
-            var order = await _orderRepository.GetAsync(id);
-            var orderDto = _mapper.Map<OrderDto>(order);
-            return orderDto;
+            try
+            {
+                _logger.LogInfo($"OrderService/GetAsync is starting");
+                var order = await _orderRepository.GetAsync(id);
+                if (order == null)
+                {
+                    return Result<OrderDto>.FailureResult("User doesn't exist");
+                }
+                else
+                {
+                    var orderDto = _mapper.Map<OrderDto>(order);
+                    return Result<OrderDto>.SuccessResult(_mapper.Map<OrderDto>(orderDto), "Order returned successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get the order {id}", ex);
+                throw;
+            }
         }
 
-        public async Task<bool> CreateAsync(CreateOrderDto createOrderDto)
+        public async Task<Result<int>> CreateAsync(CreateOrderDto createOrderDto)
         {
             try
             {
                 _logger.LogInfo($"OrderService/CreateAsync is starting");
                 var order = _mapper.Map<Order>(createOrderDto);
-                await _orderRepository.AddAsync(order);
-                _logger.LogInfo($"Order by user {createOrderDto.UserId} created successfully.");
-                return true;
+                order = await _orderRepository.AddAsync(order);
+                if (order == null)
+                {
+                    _logger.LogWarning($"Order by user {createOrderDto.UserId} has not been added");
+                    return Result<int>.FailureResult("Order has not been added");
+                }
+                else
+                {
+                    _logger.LogInfo($"Order by user {createOrderDto.UserId} created successfully.");
+                    return Result<int>.SuccessResult(order.Id, "Order created successfully");
+                }
             }
             catch (Exception ex)
             {

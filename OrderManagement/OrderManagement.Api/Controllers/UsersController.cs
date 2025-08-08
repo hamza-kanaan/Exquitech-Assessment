@@ -18,8 +18,12 @@ namespace OrderManagement.Api.Controllers
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _userService.GetAllAsync();
-            return Ok(users);
+            var result = await _userService.GetAllAsync();
+
+            if (!result.Success)
+                return BadRequest(new { result.Message });
+
+            return Ok(new { result.Message, Users = result.Data });
         }
 
         [HttpPost("register")]
@@ -27,8 +31,13 @@ namespace OrderManagement.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            await _userService.RegisterAsync(registerUserDto);
-            return Ok("User created successfully.");
+
+            var result = await _userService.RegisterAsync(registerUserDto);
+
+            if (!result.Success)
+                return BadRequest(new { result.Message });
+
+            return Ok(new { result.Message, User = result.Data });
         }
     }
 }

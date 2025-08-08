@@ -101,6 +101,13 @@ namespace OrderManagement.Infrastructure.Migrations
                             Name = "Product-2",
                             Price = 200m,
                             TenantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Product-3",
+                            Price = 300m,
+                            TenantId = 2
                         });
                 });
 

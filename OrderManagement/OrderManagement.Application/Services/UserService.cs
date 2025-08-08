@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OrderManagement.Application.DTOs;
 using OrderManagement.Application.Interfaces;
+using OrderManagement.Application.Models;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Interfaces;
 
@@ -19,23 +20,39 @@ namespace OrderManagement.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<List<UserDto>> GetAllAsync()
-        {
-            var users = await _userRepository.GetAllAsync();
-            var userDtos = _mapper.Map<List<UserDto>>(users);
-            return userDtos;
-        }
-
-        public async Task<bool> RegisterAsync(RegisterUserDto userDto)
+        public async Task<Result<List<UserDto>>> GetAllAsync()
         {
             try
             {
-                _logger.LogInfo($"RegisterAsync is starting");
+                _logger.LogInfo($"UserService/GetAllAsync is starting");
+                var users = await _userRepository.GetAllAsync();
+                if (users.Count() <= 0)
+                {
+                    return Result<List<UserDto>>.FailureResult("No users for this tenant");
+                }
+                else
+                {
+                    var userDtos = _mapper.Map<List<UserDto>>(users);
+                    return Result<List<UserDto>>.SuccessResult(_mapper.Map<List<UserDto>>(userDtos), "Users returned successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get the users", ex);
+                throw;
+            }
+        }
+
+        public async Task<Result<UserDto>> RegisterAsync(RegisterUserDto userDto)
+        {
+            try
+            {
+                _logger.LogInfo($"UserService/RegisterAsync is starting");
                 var existing = await _userRepository.GetByEmailAsync(userDto.Email);
                 if (existing != null)
                 {
-                    _logger.LogWarning($"User with email {userDto.Email} already exists.");
-                    return false;
+                    _logger.LogWarning($"User with email {userDto.Email} already exists");
+                    return Result<UserDto>.FailureResult("User already exists");
                 }
                 var user = new User
                 {
@@ -43,9 +60,9 @@ namespace OrderManagement.Application.Services
                     Email = userDto.Email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password)
                 };
-                await _userRepository.AddAsync(user);
-                _logger.LogInfo($"User with email {userDto.Email} registered successfully.");
-                return true;
+                user = await _userRepository.AddAsync(user);
+                _logger.LogInfo($"User with email {userDto.Email} registered successfully");
+                return Result<UserDto>.SuccessResult(_mapper.Map<UserDto>(user), "User registered successfully");
             }
             catch (Exception ex)
             {

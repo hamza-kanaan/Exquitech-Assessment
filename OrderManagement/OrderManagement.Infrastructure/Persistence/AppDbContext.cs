@@ -11,6 +11,7 @@ namespace OrderManagement.Infrastructure.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<User> Users { get; set; }
+
         private readonly ITenantProvider _tenantProvider;
 
         public AppDbContext(DbContextOptions<AppDbContext> options, ITenantProvider tenantProvider) : base(options)
@@ -50,6 +51,14 @@ namespace OrderManagement.Infrastructure.Persistence
                 Name = "Product-2",
                 Price = 200,
                 TenantId = 1
+            }
+            ,
+            new Product
+            {
+                Id = 3,
+                Name = "Product-3",
+                Price = 300,
+                TenantId = 2
             }
             );
             modelBuilder.Entity<User>().HasData(

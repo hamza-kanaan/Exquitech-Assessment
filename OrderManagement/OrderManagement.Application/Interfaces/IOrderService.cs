@@ -1,10 +1,11 @@
 ﻿using OrderManagement.Application.DTOs;
+using OrderManagement.Application.Models;
 
 namespace OrderManagement.Application.Interfaces
 {
     public interface IOrderService
     {
-        Task<OrderDto> GetAsync(int id);
-        Task<bool> CreateAsync(CreateOrderDto dto);
+        Task<Result<OrderDto>> GetAsync(int id);
+        Task<Result<int>> CreateAsync(CreateOrderDto dto);
     }
 }
