@@ -22,7 +22,7 @@ A RESTful API for managing orders, built with ASP.NET Core (.NET 9, C# 13).
 2. **Restore dependencies:**
 3. **Build the solution:**
 4. **Run the API:**
-5. The API will be available at `https://localhost:5001` (or as configured).
+5. The API will be available at `https://localhost:7142` (or as configured).
 
 ---
 
@@ -40,14 +40,14 @@ A RESTful API for managing orders, built with ASP.NET Core (.NET 9, C# 13).
 
 - User authentication/authorization is not implemented in this version.
 - The API expects valid data; input validation is minimal.
-- The data store is abstracted (e.g., in-memory or stubbed for demonstration).
+- The data store is abstracted (SQLite for demonstration).
 - The API is intended for demonstration and may not be production-ready.
 
 ---
 
 ## Deployed API (Azure App Service)
 
-- **Base URL:** `https://<your-app-service-name>.azurewebsites.net/api/orders`
+- **Base URL:** `https://ordermangementapi.azurewebsites.net`
 
 _Replace with your actual Azure App Service URL._
 
