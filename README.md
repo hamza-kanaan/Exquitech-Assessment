@@ -22,7 +22,7 @@ A RESTful API for managing orders, built with ASP.NET Core (.NET 9, C# 13).
 2. **Restore dependencies:**
 3. **Build the solution:**
 4. **Run the API:**
-5. The API will be available at `https://localhost:7142` (or as configured).
+5. The API will be available at `https://localhost:7142`.
 
 ---
 
