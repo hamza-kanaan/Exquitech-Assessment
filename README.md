@@ -113,10 +113,10 @@ This project provides an Order Management API designed with best practices in mi
 
 | Method | Endpoint                | Description                      |
 |--------|------------------------ |----------------------------------|
-| GET    | `https://ordermangementapi.azurewebsites.net/api/{tenantId}/Users/getAll`      | Get all users                  |
-| POST   | `https://ordermangementapi.azurewebsites.net/api/{tenantId}/Users/register`       | Register a new user               |
-| GET | `https://ordermangementapi.azurewebsites.net/api/{tenantId}/Orders/{id}`      | Get an order                  |
-| POST    | `https://ordermangementapi.azurewebsites.net/api/{tenantId}/Orders/create`      | Create an order         |
+| GET    | `/api/{tenantId}/Users/getAll`      | Get all users                  |
+| POST   | `/api/{tenantId}/Users/register`       | Register a new user               |
+| GET | `/api/{tenantId}/Orders/{id}`      | Get an order                  |
+| POST    | `/api/{tenantId}/Orders/create`      | Create an order         |
 
 _See Swagger UI for the full and up-to-date list of endpoints and their request/response schemas._
 
