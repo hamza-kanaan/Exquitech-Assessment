@@ -105,9 +105,7 @@ This project provides an Order Management API designed with best practices in mi
 
 ## Postman Collection
 
-- [Download the Postman Collection](<link-to-your-postman-collection>)
-
-_Replace with your actual Postman collection link._
+- [Download the Postman Collection](https://github.com/hamza-kanaan/Exquitech-Assessment/blob/main/Order%20Management.postman_collection.json)
 
 ---
 
