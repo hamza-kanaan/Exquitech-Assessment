@@ -8,16 +8,13 @@
   Exposes RESTful endpoints to tenants for order management (e.g., orders, users, reports).
   
 - **Application Layer**  
-  Handles business logic, use cases, service orchestration.
+  Handles business logic and use cases.
 
 - **Domain Layer**  
-  Contains domain entities, aggregates, and domain services.
+  Contains domain entities, and domain services.
 
 - **Infrastructure Layer**  
-  Implements persistence, external APIs, authentication, logging, and email notifications.
-
-- **Persistence Layer**  
-  Manages database interactions using Entity Framework Core.
+  Implements persistence (database interactions using Entity Framework Core), external APIs, authentication, logging, and email notifications.
 
 ### Multitenancy Approach
 
