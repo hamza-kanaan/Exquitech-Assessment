@@ -15,6 +15,8 @@ A RESTful API for managing orders, built with **ASP.NET Core** (.NET 9, C# 13).
 - [Deployed API (Azure App Service)](#deployed-api-azure-app-service)
 - [Postman Collection](#postman-collection)
 - [API Endpoints](#api-endpoints)
+- [Extensibility & Future Work](#extensibility--future-work)
+- [Contact](#contact)
 
 ---
 
