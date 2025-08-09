@@ -32,8 +32,8 @@ This project provides an Order Management API designed with best practices in mi
 
 2. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
-   cd <repo-folder>
+   git clone https://github.com/hamza-kanaan/Exquitech-Assessment.git
+   cd Exquitech-Assessment
    ```
 
 3. **Restore dependencies:**
@@ -48,7 +48,7 @@ This project provides an Order Management API designed with best practices in mi
 
 5. **Run the API:**
    ```sh
-   dotnet run --project src/YourApiProjectName
+   dotnet run --project OrderManagement.Api
    ```
    The API will be available at `https://localhost:7142`.
 
@@ -65,9 +65,9 @@ This project provides an Order Management API designed with best practices in mi
 ## Architectural Decisions
 
 - **Clean Architecture**: Promotes separation of concerns and testability by splitting the solution into four layers:
-  - **Domain**: Core business logic and entities.
-  - **Application**: Business use cases, DTOs, and interfaces.
-  - **Infrastructure**: Implementation details (e.g., EF Core, logging, external services).
+  - **Domain**: Entities and Interfaces.
+  - **Application**: Business use cases, DTOs.
+  - **Infrastructure**: Implementation details (e.g., EF Core, logging).
   - **API**: Presentation layer (controllers, middleware, etc.).
 - **Dependency Injection:** Services are injected via constructor for testability and maintainability.
 - **DTO Usage:** Data Transfer Objects (DTOs) are used to decouple API contracts from domain models.
@@ -75,10 +75,10 @@ This project provides an Order Management API designed with best practices in mi
 - **RESTful Endpoints:** All endpoints adhere to REST conventions (resource-based URIs, HTTP methods).
 - **Entity Framework Core:** Used with SQLite for demonstration; can be configured for other providers.
 - **Serilog:** Provides enriched, structured logging for easier monitoring and troubleshooting.
-- **FluentValidation:** Centralized, expressive validation for all DTOs and input models.
+- **FluentValidation:** Centralized, expressive validation for DTOs and input models.
 - **AutoMapper:** Simplifies the mapping between domain entities and DTOs.
 - **Swagger/OpenAPI:** Automatically generates comprehensive API documentation.
-- **Custom Middleware:** Handles global exception handling, tenant resolution, and logging.
+- **Custom Middleware:** Handles global exception handling and tenant resolution.
 
 ---
 
