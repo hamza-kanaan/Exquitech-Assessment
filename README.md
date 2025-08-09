@@ -1,12 +1,14 @@
 # Exquitech-Assessment
-Exquitech's Assessment
+
+A solution to Exquitech's assessment.
 
 # Order Management Solution
 
-A RESTful API for managing orders, built with ASP.NET Core (.NET 9, C# 13).
+A RESTful API for managing orders, built with **ASP.NET Core** (.NET 9, C# 13).
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Setup & Run Instructions](#setup--run-instructions)
 - [Architectural Decisions](#architectural-decisions)
 - [Assumptions](#assumptions)
@@ -16,56 +18,86 @@ A RESTful API for managing orders, built with ASP.NET Core (.NET 9, C# 13).
 
 ---
 
+## Overview
+
+This project provides an Order Management API designed with best practices in mind. The API enables the creation, retrieval, and management of customer orders, supporting multi-tenancy and ready for extension with features like authentication, advanced validation.
+
+---
+
 ## Setup & Run Instructions
 
 1. **Prerequisites:**
    - [.NET 9 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-   - (Optional) [SQLite](https://www.sqlite.org/download.html) if you want to inspect the database file directly
+   - (Optional) [SQLite](https://www.sqlite.org/download.html) if you want to directly inspect the database file.
+
 2. **Clone the repository:**
-   - git clone <your-repo-url> cd <repo-folder>
+   ```sh
+   git clone <your-repo-url>
+   cd <repo-folder>
+   ```
+
 3. **Restore dependencies:**
-   - dotnet restore
-4. **Build the solution**
-5. The API will be available at `https://localhost:7142`.
-6. **Swagger UI**
-   - Navigate to `https://localhost:7142/swagger` for API documentation and testing.
-7. **Run Tests**
-   - dotnet test
+   ```sh
+   dotnet restore
+   ```
+
+4. **Build the solution:**
+   ```sh
+   dotnet build
+   ```
+
+5. **Run the API:**
+   ```sh
+   dotnet run --project src/YourApiProjectName
+   ```
+   The API will be available at `https://localhost:7142`.
+
+6. **Swagger UI:**
+   - Navigate to `https://localhost:7142/swagger` to access interactive API documentation and test endpoints.
+
+7. **Run Tests:**
+   ```sh
+   dotnet test
+   ```
 
 ---
 
 ## Architectural Decisions
 
-- **Clean Architecture**: The solution is split into Domain, Application, Infrastructure, and API layers for separation of concerns and testability.
+- **Clean Architecture**: Promotes separation of concerns and testability by splitting the solution into four layers:
+  - **Domain**: Core business logic and entities.
+  - **Application**: Business use cases, DTOs, and interfaces.
+  - **Infrastructure**: Implementation details (e.g., EF Core, logging, external services).
+  - **API**: Presentation layer (controllers, middleware, etc.).
 - **Dependency Injection:** Services are injected via constructor for testability and maintainability.
 - **DTO Usage:** Data Transfer Objects (DTOs) are used to decouple API contracts from domain models.
-- **Async/Await:** All service calls are asynchronous for scalability.
-- **RESTful Endpoints:** Follows REST conventions for resource management.
-- **Entity Framework Core**: Used for data access with SQLite as the default provider.
-- **Serilog**: For structured logging.
-- **FluentValidation**: For validating DTOs and input models.
-- **AutoMapper**: For mapping between domain entities and DTOs.
-- **Swagger/OpenAPI**: For API documentation and testing.
-- **Custom Middleware**: Exception handling and tenant resolution are handled via middleware.
+- **Async/Await:** All I/O and service calls are asynchronous for improved scalability.
+- **RESTful Endpoints:** All endpoints adhere to REST conventions (resource-based URIs, HTTP methods).
+- **Entity Framework Core:** Used with SQLite for demonstration; can be configured for other providers.
+- **Serilog:** Provides enriched, structured logging for easier monitoring and troubleshooting.
+- **FluentValidation:** Centralized, expressive validation for all DTOs and input models.
+- **AutoMapper:** Simplifies the mapping between domain entities and DTOs.
+- **Swagger/OpenAPI:** Automatically generates comprehensive API documentation.
+- **Custom Middleware:** Handles global exception handling, tenant resolution, and logging.
 
 ---
 
 ## Assumptions
 
-- User authentication/authorization is not implemented in this version.
-- The API expects valid data; input validation is minimal.
-- The data store is abstracted (SQLite for demonstration).
-- The database is automatically migrated on application startup.
-- The API is multi-tenant, with tenant resolution handled by middleware.
-- User registration checks for existing users by email.
-- Logging is required for both successful and failed attempts.
+- **Authentication & Authorization**: Not implemented in this version. All endpoints are open.
+- **Input Validation**: Basic validation is implemented; more complex business rules can be added as needed.
+- **Data Store**: Abstracted through EF Core; SQLite is used for demo purposes but can easily be replaced.
+- **Database Migrations**: The database schema is automatically migrated at application startup.
+- **Multi-Tenancy**: Assumes tenant identification is via middleware.
+- **User Registration**: Checks for existing users by email to prevent duplicates.
+- **Logging**: All actions (success and failure) are logged for auditability.
 
 ---
 
 ## Deployed API (Azure App Service)
 
-- **Base URL:** `https://ordermangementapi.azurewebsites.net`
-- Navigate to `https://ordermangementapi.azurewebsites.net/swagger` for API documentation and testing.
+- **Base URL:** [`https://ordermangementapi.azurewebsites.net`](https://ordermangementapi.azurewebsites.net)
+- **Swagger Docs:** [`https://ordermangementapi.azurewebsites.net/swagger`](https://ordermangementapi.azurewebsites.net/swagger)
 
 ---
 
@@ -79,13 +111,31 @@ _Replace with your actual Postman collection link._
 
 ## API Endpoints
 
-| Method | Endpoint              | Description         |
-|--------|----------------------|---------------------|
-| GET    | `/api/orders/{id}`   | Get order by ID     |
-| POST   | `/api/orders/add`    | Create a new order  |
+| Method | Endpoint                | Description                      |
+|--------|------------------------ |----------------------------------|
+| GET    | `/api/orders/{id}`      | Get order by ID                  |
+| POST   | `/api/orders/add`       | Create a new order               |
+| PUT    | `/api/orders/{id}`      | Update an existing order         |
+| DELETE | `/api/orders/{id}`      | Delete an order                  |
+| GET    | `/api/orders`           | List all orders (optional query params for tenant, filtering, etc.) |
+| ...    |                        | Additional endpoints as needed   |
+
+_See Swagger UI for the full and up-to-date list of endpoints and their request/response schemas._
+
+---
+
+## Extensibility & Future Work
+
+- **Authentication & Authorization**: Integrate ASP.NET Core Identity or JWT-based authentication.
+- **Advanced Validation**: Implement more business rules, including order limits, stock checks, etc.
+- **External Integrations**: Plug in with payment gateways, shipping APIs, etc.
+- **Monitoring & Metrics**: Add Application Insights or Prometheus integration.
+- **Deployment**: Add CI/CD pipelines and infrastructure as code (IaC) scripts.
 
 ---
 
 ## Contact
 
-For questions or support, please open an issue on GitHub.
+For questions, issues, or support, please [open an issue on GitHub](https://github.com/hamza-kanaan/Exquitech-Assessment/issues).
+
+---
