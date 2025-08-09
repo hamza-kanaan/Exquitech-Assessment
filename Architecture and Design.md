@@ -34,10 +34,10 @@
 ### API Structure
 
 - **Versioned REST API**  
-/api/v1/tenants/{tenantId}/orders
-/api/v1/tenants/{tenantId}/users
+/api/v1/{tenantId}/orders
+/api/v1/{tenantId}/users
 - Authenticated access via OAuth2 / OpenID Connect (Azure AD B2C or IdentityServer)
-- Middleware for extracting and validating `TenantId` from JWT and HTTP headers
+- Middleware for extracting and validating `TenantId` from URL
 
 ### Hosting Strategy
 
@@ -51,9 +51,9 @@
 ## 2. Technology Stack
 
 ### Backend
-- **.NET 8 Web API**
+- **.NET 9 Web API**
 - **Entity Framework Core**
-- **FluentValidation / MediatR** for CQRS and validation
+- **FluentValidation** for validation
 - **AutoMapper** for DTO mapping
 
 ### Database
