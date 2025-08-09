@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "59220472-f368-4f04-bf95-dcef89e29d3b",
+		"name": "Order Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18565258"
+	},
+	"item": [
+		{
+			"name": "Get All Users (Tenant = 1)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ordermangementapi.azurewebsites.net/api/1/Users/getAll",
+					"protocol": "https",
+					"host": [
+						"ordermangementapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"1",
+						"Users",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User (Tenant = 1)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"hkanaan\",\r\n  \"password\": \"hkanaan123\",\r\n  \"email\": \"hkanaan@google.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ordermangementapi.azurewebsites.net/api/2/Users/register",
+					"protocol": "https",
+					"host": [
+						"ordermangementapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"2",
+						"Users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order (Tenant = 1)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"productId\": 1,\r\n      \"quantity\": 5\r\n    }\r\n  ],\r\n  \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ordermangementapi.azurewebsites.net/api/1/Orders/create",
+					"protocol": "https",
+					"host": [
+						"ordermangementapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"1",
+						"Orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order (Tenant = 1)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ordermangementapi.azurewebsites.net/api/1/Orders/1",
+					"protocol": "https",
+					"host": [
+						"ordermangementapi",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"1",
+						"Orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
