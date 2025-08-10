@@ -107,6 +107,7 @@ A sequence of deployment environments where code is progressively tested and val
   - Production: The live environment accessed by end users
 - **Blue/Green deployment** for minimal downtime
 A deployment strategy where two identical environments (blue and green) are maintained; new releases go to the inactive one, then traffic switches over instantly, minimizing downtime and rollback risk.
+<img width="989" height="677" alt="image" src="https://github.com/user-attachments/assets/329b382e-a83a-4e56-8e57-592d67c9a0e8" />
 
 ### Team Structure and Responsibilities
 
