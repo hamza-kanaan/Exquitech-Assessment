@@ -49,8 +49,8 @@ This system is designed to serve multiple tenants (clients/organizations) within
 
 - **Azure App Services** (default for lower operational overhead)
 - **Dockerized** .NET apps for containerization, enabling:
-- Azure Kubernetes Service (AKS) for advanced scaling needs
-- Easier CI/CD pipelines and local development consistency
+  - Azure Kubernetes Service (AKS) for advanced scaling needs
+  - Easier CI/CD pipelines and local development consistency
 
 ---
 
