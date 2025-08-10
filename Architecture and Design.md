@@ -33,6 +33,8 @@ This system is designed to serve multiple tenants (clients/organizations) within
   Cons:
   - Higher complexity for isolation and data access control
 
+<img width="525" height="654" alt="image" src="https://github.com/user-attachments/assets/159bf836-5c4a-4d26-ace5-7551e6362fa8" />
+
 > Alternatively, the design allows switching to **Schema-per-Tenant** for premium customers if needed.
 
 ### API Structure
