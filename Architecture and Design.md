@@ -101,11 +101,11 @@ This system is designed to serve multiple tenants (clients/organizations) within
 A structured Git workflow that uses specific branches for features, releases, hotfixes, and development, helping teams manage parallel work and release cycles smoothly.
 
 - **Environments:** Dev → QA → Staging → Production
-A sequence of deployment environments where code is progressively tested and validated:
-**1- Dev: Developers integrate and test new code.
-**2- QA: Quality assurance team tests functionality and finds bugs.
-**3- Staging: A production-like environment for final validation before release.
-**4- Production: The live environment accessed by end users.
+    A sequence of deployment environments where code is progressively tested and validated:
+    -1- Dev: Developers integrate and test new code.
+    -2- QA: Quality assurance team tests functionality and finds bugs.
+    -3- Staging: A production-like environment for final validation before release.
+    -4- Production: The live environment accessed by end users.
 
 - **Blue/Green deployment** for minimal downtime
 A deployment strategy where two identical environments (blue and green) are maintained; new releases go to the inactive one, then traffic switches over instantly, minimizing downtime and rollback risk.
