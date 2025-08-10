@@ -90,23 +90,21 @@ This system is designed to serve multiple tenants (clients/organizations) within
 
 ### Scalability & Performance
 
-- **Horizontal scaling** of App Services or AKS pods
-- **Elastic pools** for Azure SQL to auto-scale based on tenant activity
-- **Caching** with Redis to reduce DB load
-- **Asynchronous background jobs** using Azure Functions
+- **Horizontal scaling** of App Services or AKS pods (Add more app instances or pods to handle increased traffic and improve availability.)
+- **Elastic pools** for Azure SQL to auto-scale based on tenant activity (Dynamically share and scale database resources across tenants based on their usage.)
+- **Caching** with Redis to reduce DB load (Store frequent data in memory to speed up responses and reduce database queries.)
+- **Asynchronous background jobs** using Azure Functions (Run background tasks asynchronously to keep the app responsive and scalable.)
 
 ### DevOps & Deployment Strategy
 
 - **Branching strategy:**
 A structured Git workflow that uses specific branches for features, releases, hotfixes, and development, helping teams manage parallel work and release cycles smoothly.
-
-- **Environments:** Dev → QA → Staging → Production
+- **Environments:** (Dev → QA → Staging → Production)
 A sequence of deployment environments where code is progressively tested and validated:
 1. Dev: Developers integrate and test new code.
 1. QA: Quality assurance team tests functionality and finds bugs.
 1. Staging: A production-like environment for final validation before release.
 1. Production: The live environment accessed by end users.
-
 - **Blue/Green deployment** for minimal downtime
 A deployment strategy where two identical environments (blue and green) are maintained; new releases go to the inactive one, then traffic switches over instantly, minimizing downtime and rollback risk.
 
