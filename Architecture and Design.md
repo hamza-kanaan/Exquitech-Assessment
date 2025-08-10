@@ -63,9 +63,9 @@ This system is designed to serve multiple tenants (clients/organizations) within
 - **AutoMapper** for DTO mapping
 
 ### Database
-- **Azure SQL Database** (shared instance with elastic pools)
-- **Redis Cache** for caching common lookups
-- **Blob Storage** for document attachments
+- **Azure SQL Database** Shared databases that auto-scale resources based on tenant needs for cost and performance efficiency.
+- **Redis Cache** In-memory caching to speed up common data lookups and reduce database load.
+- **Blob Storage** Scalable storage for documents and files, keeping the database optimized and improving performance.
 
 ### CI/CD Tools
 - **Azure DevOps Pipelines** for build, test, and release
@@ -83,17 +83,17 @@ This system is designed to serve multiple tenants (clients/organizations) within
 
 ### Enforcing Tenant Isolation
 
-- Middleware-based `TenantContext` extracted from URL route parameter (instead of JWT or headers).
+- Middleware-based `TenantContext` extracted from URL route parameter (instead of JWT or headers)
 - Global query filters in EF Core using `HasQueryFilter(x => x.TenantId == tenantId)`
 - Row-level security (RLS) in Azure SQL (if needed)
 - Scoped services per tenant in DI container
 
 ### Scalability & Performance
 
-- **Horizontal scaling** of App Services or AKS pods (Add more app instances or pods to handle increased traffic and improve availability.)
-- **Elastic pools** for Azure SQL to auto-scale based on tenant activity (Dynamically share and scale database resources across tenants based on their usage.)
-- **Caching** with Redis to reduce DB load (Store frequent data in memory to speed up responses and reduce database queries.)
-- **Asynchronous background jobs** using Azure Functions (Run background tasks asynchronously to keep the app responsive and scalable.)
+- **Horizontal scaling** of App Services or AKS pods (Add more app instances or pods to handle increased traffic and improve availability)
+- **Elastic pools** for Azure SQL to auto-scale based on tenant activity (Dynamically share and scale database resources across tenants based on their usage)
+- **Caching** with Redis to reduce DB load (Store frequent data in memory to speed up responses and reduce database queries)
+- **Asynchronous background jobs** using Azure Functions (Run background tasks asynchronously to keep the app responsive and scalable)
 
 ### DevOps & Deployment Strategy
 
@@ -101,10 +101,10 @@ This system is designed to serve multiple tenants (clients/organizations) within
 A structured Git workflow that uses specific branches for features, releases, hotfixes, and development, helping teams manage parallel work and release cycles smoothly.
 - **Environments:** (Dev → QA → Staging → Production)
 A sequence of deployment environments where code is progressively tested and validated:
-1. Dev: Developers integrate and test new code.
-1. QA: Quality assurance team tests functionality and finds bugs.
-1. Staging: A production-like environment for final validation before release.
-1. Production: The live environment accessed by end users.
+1. Dev: Developers integrate and test new code
+1. QA: Quality assurance team tests functionality and finds bugs
+1. Staging: A production-like environment for final validation before release
+1. Production: The live environment accessed by end users
 - **Blue/Green deployment** for minimal downtime
 A deployment strategy where two identical environments (blue and green) are maintained; new releases go to the inactive one, then traffic switches over instantly, minimizing downtime and rollback risk.
 
