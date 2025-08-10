@@ -2,6 +2,8 @@
 
 ## 1. Architecture Overview
 
+This system is designed to serve multiple tenants (clients/organizations) within a single deployment, enabling cost efficiency and simplified management while ensuring strong data isolation and scalability. It follows Clean Architecture principles to maintain separation of concerns, testability, and flexibility for future enhancements.
+
 ### Application Layers
 
 - **Presentation Layer (API)**  
@@ -15,6 +17,8 @@
 
 - **Infrastructure Layer**  
   Implements persistence (database interactions using Entity Framework Core), external APIs, authentication, logging, and email notifications.
+
+<img width="1100" height="1093" alt="image" src="https://github.com/user-attachments/assets/1a2513fa-abf0-46a3-8268-8515c20705ea" />
 
 ### Multitenancy Approach
 
@@ -44,7 +48,7 @@
 - **Azure App Services** (default for lower operational overhead)
 - **Dockerized** .NET apps for containerization, enabling:
 - Azure Kubernetes Service (AKS) for advanced scaling needs
-- Easier CI/CD pipelines and local development parity
+- Easier CI/CD pipelines and local development consistency
 
 ---
 
@@ -69,7 +73,7 @@
 - **Serilog + Azure Application Insights** for centralized logging
 - **Health Checks** via `.NET HealthChecks` and Azure Monitor
 - **xUnit + Moq** for unit testing
-- **Playwright or Postman** for integration and API tests
+- **Postman** for integration and API tests
 
 ---
 
@@ -77,7 +81,7 @@
 
 ### Enforcing Tenant Isolation
 
-- Middleware-based `TenantContext` extracted from JWT and request headers
+- Middleware-based `TenantContext` extracted from URL route parameter (instead of only JWT or headers).
 - Global query filters in EF Core using `HasQueryFilter(x => x.TenantId == tenantId)`
 - Row-level security (RLS) in Azure SQL (if needed)
 - Scoped services per tenant in DI container
@@ -87,14 +91,13 @@
 - **Horizontal scaling** of App Services or AKS pods
 - **Elastic pools** for Azure SQL to auto-scale based on tenant activity
 - **Caching** with Redis to reduce DB load
-- **Asynchronous background jobs** using Azure Functions or Hangfire
+- **Asynchronous background jobs** using Azure Functions
 
 ### DevOps & Deployment Strategy
 
 - **Branching strategy:** Git Flow
 - **Environments:** Dev → QA → Staging → Production
-- **Feature flags** for incremental feature rollout
-- **Blue/Green or Canary deployments** for minimal downtime
+- **Blue/Green deployment** for minimal downtime
 
 ### Team Structure and Responsibilities
 
