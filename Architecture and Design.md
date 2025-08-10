@@ -42,7 +42,7 @@ This system is designed to serve multiple tenants (clients/organizations) within
 - **Versioned REST API**  
 /api/v1/{tenantId}/orders
 /api/v1/{tenantId}/users
-- Authenticated access via OAuth2 / OpenID Connect (Azure AD B2C or IdentityServer)
+- Authenticated access via OAuth2 / OpenID Connect (Microsoft Entra or IdentityServer)
 - Middleware for extracting and validating `TenantId` from URL
 
 ### Hosting Strategy
